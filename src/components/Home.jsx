@@ -1,16 +1,40 @@
-import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import company1 from '../assets/img/company_logo_1.png'
-import company2 from '../assets/img/company_logo_2.png'
-import company3 from '../assets/img/company_logo_3.png'
-import company4 from '../assets/img/company_logo_4.png'
-import company5 from '../assets/img/company_logo_5.png'
-import company6 from '../assets/img/company_logo_6.png'
-import company7 from '../assets/img/company_logo_7.png'
-import company8 from '../assets/img/company_logo_8.png'
+import React, { useState, useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import { db } from '../config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import company1 from "../assets/img/company_logo_1.png";
+import company2 from "../assets/img/company_logo_2.png";
+import company3 from "../assets/img/company_logo_3.png";
+import company4 from "../assets/img/company_logo_4.png";
+import company5 from "../assets/img/company_logo_5.png";
+import company6 from "../assets/img/company_logo_6.png";
+import company7 from "../assets/img/company_logo_7.png";
+import company8 from "../assets/img/company_logo_8.png";
 
 const Home = () => {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "jobs"));
+        const jobsData = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setJobs(jobsData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching jobs: ", error);
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
     <>
       <Header />
@@ -45,47 +69,41 @@ const Home = () => {
               role="tabpanel"
             >
               <div className="row">
-                {/* Single Job */}
-                <div className="col-md-3 col-sm-6">
-                  <div className="utf_grid_job_widget_area">
-                    {" "}
-                    <span className="job-type full-type">Job Category</span>
-                    {/* <div className="utf_job_like">
-                <label className="toggler toggler-danger">
-                  <input type="checkbox" defaultChecked="" />
-                  <i className="fa fa-heart" />
-                </label>
-              </div> */}
-                    <div className="u-content">
-                      <div className="avatar box-80">
-                        {" "}
-                        <a href="employer-detail.html">
-                          {" "}
-                          <img
-                            className="img-responsive"
-                            src={company1}
-                            alt=""
-                          />{" "}
-                        </a>{" "}
+                {loading ? (
+                  <div className="col-12 text-center">Loading jobs...</div>
+                ) : (
+                  jobs.map((job) => (
+                    <div className="col-md-3 col-sm-6" key={job.id}>
+                      <div className="utf_grid_job_widget_area">
+                        <span className="job-type full-type">{job.category}</span>
+                        <div className="u-content">
+                          <div className="avatar box-80">
+                            <a href="employer-detail.html">
+                              <img
+                                className="img-responsive"
+                                src={company1}
+                                alt={job.companyDetails}
+                              />
+                            </a>
+                          </div>
+                          <h5>
+                            <a href="employer-detail.html">{job.jobTitle}</a>
+                          </h5>
+                          <p className="text-muted mb-0">Position: {job.jobPosition}</p>
+                          <p className="text-muted py-0 my-0">Package: {job.package}+ LPA</p>
+                        </div>
+                        <div className="utf_apply_job_btn_item">
+                          <a
+                            href="job-detail.html"
+                            className="btn job-browse-btn btn-radius br-light"
+                          >
+                            Apply
+                          </a>
+                        </div>
                       </div>
-                      <h5>
-                        <a href="employer-detail.html">This is Job Title</a>
-                      </h5>
-                      <p className="text-muted mb-0">This is job position</p>
-                      <p className="text-muted py-0 my-0">This is package</p>
                     </div>
-                    <div className="utf_apply_job_btn_item">
-                      {" "}
-                      <a
-                        href="job-detail.html"
-                        className="btn job-browse-btn btn-radius br-light"
-                      >
-                        Apply
-                      </a>{" "}
-                    </div>
-                  </div>
-                </div>
-                
+                  ))
+                )}
               </div>
             </div>
             {/* Featured Job */}
@@ -190,7 +208,7 @@ const Home = () => {
                             src={company5}
                             alt=""
                           />{" "}
-                        </a>{" "}
+                        </a>{" "} 
                       </div>
                       <h5>
                         <a href="employer-detail.html">Web Maintenence</a>
@@ -488,6 +506,6 @@ const Home = () => {
       <Footer />
     </>
   );
-}
+};
 
-export default Home
+export default Home;
