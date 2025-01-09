@@ -12,7 +12,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
-          <Route path="/job-detail/:id" element={<JobDetail/>} />
+          <Route path="/job-detail/:title/:id" element={<JobDetail/>} />
         </Routes>
       </HashRouter>
     </>

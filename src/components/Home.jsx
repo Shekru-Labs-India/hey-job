@@ -37,8 +37,9 @@ const Home = () => {
     fetchJobs();
   }, []);
 
-  const handleJobClick = (jobId) => {
-    navigate(`/job-detail/${jobId}`);
+  const handleJobClick = (jobId, jobTitle) => {
+    const formattedTitle = jobTitle.toLowerCase().replace(/\s+/g, '+');
+    navigate(`/job-detail/${formattedTitle}/${jobId}`);
   };
 
   return (
@@ -80,10 +81,10 @@ const Home = () => {
                 ) : (
                   jobs.map((job) => (
                     <div className="col-md-3 col-sm-6" key={job.id}>
-                      <div 
-                        className="utf_grid_job_widget_area pt-0" 
-                        onClick={() => handleJobClick(job.id)} 
-                        style={{ cursor: 'pointer' }}
+                      <div
+                        className="utf_grid_job_widget_area pt-0"
+                        onClick={() => handleJobClick(job.id, job.jobTitle)}
+                        style={{ cursor: "pointer" }}
                       >
                         <div
                           className="u-content px-0"
@@ -97,11 +98,13 @@ const Home = () => {
                             }
                             style={{ width: "100%" }}
                           >
-                            <a onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleJobClick(job.id);
-                            }}>
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleJobClick(job.id, job.jobTitle);
+                              }}
+                            >
                               <img
                                 className="img-responsive"
                                 src={job.image ? job.image : company1}
@@ -118,19 +121,22 @@ const Home = () => {
                             {job.category}
                           </span>
                           <h5 className="pt-3">
-                            <a onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleJobClick(job.id);
-                            }}>{job.jobTitle}</a>
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleJobClick(job.id, job.jobTitle);
+                              }}
+                            >
+                              {job.jobTitle}
+                            </a>
                           </h5>
                           <p className="text-muted mb-0">
                             <i className="fa fa-briefcase"></i>{" "}
                             {job.jobPosition}
                           </p>
                           <p className="text-muted py-0 my-0">
-                            <i className="fas fa-dollar-sign"></i>{" "}
-                            {job.package}+ LPA
+                            <i className="fas fa-wallet"></i> {job.package}+ LPA
                           </p>
                         </div>
                         <div className="utf_apply_job_btn_item">
@@ -138,7 +144,7 @@ const Home = () => {
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
-                              handleJobClick(job.id);
+                              handleJobClick(job.id, job.jobTitle);
                             }}
                             className="btn job-browse-btn btn-radius br-light"
                           >

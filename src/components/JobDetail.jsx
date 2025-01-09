@@ -7,7 +7,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import company1 from '../assets/img/company_logo_1.png'
 
 const JobDetail = () => {
-  const { id } = useParams();
+  const { id, title } = useParams();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,15 @@ const JobDetail = () => {
       try {
         const jobDoc = await getDoc(doc(db, "jobs", id));
         if (jobDoc.exists()) {
-          setJob({ id: jobDoc.id, ...jobDoc.data() });
+          const jobData = { id: jobDoc.id, ...jobDoc.data() };
+          // Verify if the URL matches the job title
+          const formattedJobTitle = jobData.jobTitle.toLowerCase().replace(/\s+/g, '+');
+          if (formattedJobTitle !== title) {
+            // If URL doesn't match the job title, redirect to the correct URL
+            window.location.href = `/job-detail/${formattedJobTitle}/${id}`;
+            return;
+          }
+          setJob(jobData);
         }
         setLoading(false);
       } catch (error) {
@@ -26,7 +34,7 @@ const JobDetail = () => {
     };
 
     fetchJobDetail();
-  }, [id]);
+  }, [id, title]);
 
   if (loading) {
     return <div className="text-center p-5">Loading...</div>;
@@ -88,11 +96,10 @@ const JobDetail = () => {
                         <a>{job.jobTitle}</a>
                       </h5>
                       <p className="text-muted mb-0">
-                        <i className="fa fa-briefcase"></i> {job.jobPosition}
+                        <i className="fa fa-briefcase pe-1"></i> {job.jobPosition}
                       </p>
                       <p className="text-muted py-0 my-0">
-                        <i className="fas fa-dollar-sign"></i> {job.package}+
-                        LPA
+                        <i className="fas fa-wallet pe-1"></i> {job.package}+ LPA
                       </p>
                     </div>
                   </div>
@@ -103,48 +110,46 @@ const JobDetail = () => {
                       <div className="row">
                         <div className="col-md-8">
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-credit-card padd-r-10" />
+                            <i className="fas fa-wallet padd-r-10" />
                             Package: {job.package}+ LPA
                           </div>
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-mobile padd-r-10" />
+                            <i className="fas fa-list padd-r-10" />
                             Category: {job.category}
                           </div>
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-briefcase padd-r-10" />
+                            <i className="fas fa-briefcase padd-r-10" />
                             Position: {job.jobPosition}
                           </div>
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-user padd-r-10" />
+                            <i className="fas fa-building padd-r-10" />
                             Company: {job.companyDetails}
                           </div>
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-location-pin padd-r-10" />
+                            <i className="fas fa-map-marker-alt padd-r-10" />
                             Location: {job.location}
                           </div>
+
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-link padd-r-10" />
-                            Package URL: {job.packageUrl}
+                            <i className="fas fa-clock padd-r-10" />
+                            Posted On:{" "}
+                            {job.createdAt
+                              ? new Date(job.createdAt.seconds * 1000)
+                                  .toLocaleDateString("en-US", {
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                  })
+                                  .replace(/\s/, " ")
+                              : "N/A"}
                           </div>
-                          <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-calendar padd-r-10" />
-                            Posted On: {job.createdAt ? new Date(job.createdAt.seconds * 1000).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/\s/, ' ') : 'N/A'}
-                          </div>
-                          {/* <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-calendar padd-r-10" />
-                            Updated: {job.updatedAt ? new Date(job.updatedAt.seconds * 1000).toLocaleString() : 'N/A'}
-                          </div> */}
-                          {/* <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-info-alt padd-r-10" />
-                            Status: <span className="badge bg-success text-white">{job.status}</span>
-                          </div> */}
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              
+
               <div className="detail-wrapper">
                 <div className="detail-wrapper-header">
                   <h4>Job Description</h4>

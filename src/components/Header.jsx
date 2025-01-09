@@ -51,9 +51,9 @@ const Header = () => {
             <li className="nav-item">
               <Link className="nav-link text-white" to="/batches">Batches</Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link text-white" to="/contact">Contact</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
