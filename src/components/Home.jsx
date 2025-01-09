@@ -74,23 +74,46 @@ const Home = () => {
                 ) : (
                   jobs.map((job) => (
                     <div className="col-md-3 col-sm-6" key={job.id}>
-                      <div className="utf_grid_job_widget_area">
-                        <span className="job-type full-type">{job.category}</span>
-                        <div className="u-content">
-                          <div className="avatar box-80">
+                      <div className="utf_grid_job_widget_area pt-0">
+                        <div
+                          className="u-content px-0"
+                          style={{ position: "relative" }}
+                        >
+                          <div
+                            className={
+                              job.image
+                                ? "avatar-square box-80"
+                                : "avatar box-80"
+                            }
+                            style={{ width: "100%" }}
+                          >
                             <a href="employer-detail.html">
                               <img
                                 className="img-responsive"
-                                src={company1}
+                                src={job.image ? job.image : company1}
                                 alt={job.companyDetails}
+                                style={{
+                                  width: "100%",
+                                  height: "200px",
+                                  objectFit: "cover",
+                                }}
                               />
                             </a>
                           </div>
-                          <h5>
+                          <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
+                            {job.category}
+                          </span>
+                          <h5 className="pt-3">
                             <a href="employer-detail.html">{job.jobTitle}</a>
                           </h5>
-                          <p className="text-muted mb-0">Position: {job.jobPosition}</p>
-                          <p className="text-muted py-0 my-0">Package: {job.package}+ LPA</p>
+                          <p className="text-muted mb-0">
+                            <i className="fa fa-briefcase"></i>{" "}
+                            {job.jobPosition}
+                          </p>
+                          <p className="text-muted py-0 my-0">
+                            <i className="fas fa-dollar-sign"></i>{" "}
+                            {job.package}+ LPA
+                          </p>
                         </div>
                         <div className="utf_apply_job_btn_item">
                           <a
@@ -208,7 +231,7 @@ const Home = () => {
                             src={company5}
                             alt=""
                           />{" "}
-                        </a>{" "} 
+                        </a>{" "}
                       </div>
                       <h5>
                         <a href="employer-detail.html">Web Maintenence</a>
