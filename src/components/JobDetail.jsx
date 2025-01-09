@@ -57,7 +57,7 @@ const JobDetail = () => {
             <div className="col-md-8 col-sm-7">
               <div className="row">
                 <div className="col-md-4">
-                  <div className="utf_grid_job_widget_area pt-0">
+                  <div className="utf_grid_job_widget_area pt-0 pb-0">
                     <div
                       className="u-content px-0"
                       style={{ position: "relative" }}
@@ -101,7 +101,7 @@ const JobDetail = () => {
                   <div className="detail-wrapper">
                     <div className="detail-wrapper-body">
                       <div className="row">
-                        <div className="col-md-8 ">
+                        <div className="col-md-8">
                           <div className="col-sm-12 mrg-bot-10">
                             <i className="ti-credit-card padd-r-10" />
                             Package: {job.package}+ LPA
@@ -115,17 +115,29 @@ const JobDetail = () => {
                             Position: {job.jobPosition}
                           </div>
                           <div className="col-sm-12 mrg-bot-10">
-                            <i className="ti-calendar padd-r-10" />
-                            <span
-                              className={`full-type ${
-                                job.status === "active"
-                                  ? "text-success"
-                                  : "text-danger"
-                              }`}
-                            >
-                              {job.status}
-                            </span>
+                            <i className="ti-user padd-r-10" />
+                            Company: {job.companyDetails}
                           </div>
+                          <div className="col-sm-12 mrg-bot-10">
+                            <i className="ti-location-pin padd-r-10" />
+                            Location: {job.location}
+                          </div>
+                          <div className="col-sm-12 mrg-bot-10">
+                            <i className="ti-link padd-r-10" />
+                            Package URL: {job.packageUrl}
+                          </div>
+                          <div className="col-sm-12 mrg-bot-10">
+                            <i className="ti-calendar padd-r-10" />
+                            Posted On: {job.createdAt ? new Date(job.createdAt.seconds * 1000).toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/\s/, ' ') : 'N/A'}
+                          </div>
+                          {/* <div className="col-sm-12 mrg-bot-10">
+                            <i className="ti-calendar padd-r-10" />
+                            Updated: {job.updatedAt ? new Date(job.updatedAt.seconds * 1000).toLocaleString() : 'N/A'}
+                          </div> */}
+                          {/* <div className="col-sm-12 mrg-bot-10">
+                            <i className="ti-info-alt padd-r-10" />
+                            Status: <span className="badge bg-success text-white">{job.status}</span>
+                          </div> */}
                         </div>
                       </div>
                     </div>
