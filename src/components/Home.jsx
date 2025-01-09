@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import { db } from '../config/firebase';
@@ -15,6 +16,7 @@ import company8 from "../assets/img/company_logo_8.png";
 const Home = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -34,6 +36,10 @@ const Home = () => {
 
     fetchJobs();
   }, []);
+
+  const handleJobClick = (jobId) => {
+    navigate(`/job-detail/${jobId}`);
+  };
 
   return (
     <>
@@ -74,7 +80,11 @@ const Home = () => {
                 ) : (
                   jobs.map((job) => (
                     <div className="col-md-3 col-sm-6" key={job.id}>
-                      <div className="utf_grid_job_widget_area pt-0">
+                      <div 
+                        className="utf_grid_job_widget_area pt-0" 
+                        onClick={() => handleJobClick(job.id)} 
+                        style={{ cursor: 'pointer' }}
+                      >
                         <div
                           className="u-content px-0"
                           style={{ position: "relative" }}
@@ -87,7 +97,11 @@ const Home = () => {
                             }
                             style={{ width: "100%" }}
                           >
-                            <a href="employer-detail.html">
+                            <a onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id);
+                            }}>
                               <img
                                 className="img-responsive"
                                 src={job.image ? job.image : company1}
@@ -104,7 +118,11 @@ const Home = () => {
                             {job.category}
                           </span>
                           <h5 className="pt-3">
-                            <a href="employer-detail.html">{job.jobTitle}</a>
+                            <a onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id);
+                            }}>{job.jobTitle}</a>
                           </h5>
                           <p className="text-muted mb-0">
                             <i className="fa fa-briefcase"></i>{" "}
@@ -117,7 +135,11 @@ const Home = () => {
                         </div>
                         <div className="utf_apply_job_btn_item">
                           <a
-                            href="job-detail.html"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id);
+                            }}
                             className="btn job-browse-btn btn-radius br-light"
                           >
                             Apply
