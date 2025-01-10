@@ -10,6 +10,8 @@ import BrowseJobs from './components/BrowseJobs';
 import Form from './components/Form';
 import Categories from './components/Categories';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsConditions from './components/TermsConditions';
+
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path="/categories" element={<Categories/>} />
           <Route path="/browse-jobs" element={<BrowseJobs/>} />
           <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
+          <Route path="/terms-conditions" element={<TermsConditions/>} />
         </Routes>
       </BrowserRouter>
     </>

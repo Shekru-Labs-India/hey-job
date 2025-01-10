@@ -17,7 +17,8 @@ const Footer = () => {
               </Link>
               <p>
                 Lorem Ipsum is simply dummy text of printing and type setting
-                industry. Lorem Ipsum been industry standard dummy text ever since.
+                industry. Lorem Ipsum been industry standard dummy text ever
+                since.
               </p>
               {/* Social Box */}
               <div className="f-social-box">
@@ -52,30 +53,33 @@ const Footer = () => {
                   <ul>
                     <li>
                       <Link to="/">
-                      <p>
-                        <i className="fa fa-angle-double-right" /> Home
-                      </p>
+                        <p>
+                          <i className="fa fa-angle-double-right" /> Home
+                        </p>
                       </Link>
                     </li>
                     <li>
                       <Link to="/browse-jobs">
-                      <p>
-                        <i className="fa fa-angle-double-right" /> Jobs Listing
-                      </p>
+                        <p>
+                          <i className="fa fa-angle-double-right" /> Jobs
+                          Listing
+                        </p>
                       </Link>
                     </li>
                     <li>
                       <Link to="/privacy-policy">
-                      <p>
-                        <i className="fa fa-angle-double-right" /> Privacy Policy
-                      </p>
+                        <p>
+                          <i className="fa fa-angle-double-right" /> Privacy
+                          Policy
+                        </p>
                       </Link>
                     </li>
                     <li>
-                      <Link to="#">
-                      <p>
-                        <i className="fa fa-angle-double-right" /> Term &amp; Condition
-                      </p>
+                      <Link to="/terms-conditions">
+                        <p>
+                          <i className="fa fa-angle-double-right" /> Term &amp;
+                          Condition
+                        </p>
                       </Link>
                     </li>
                   </ul>
