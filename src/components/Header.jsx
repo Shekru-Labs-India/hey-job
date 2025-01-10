@@ -6,7 +6,7 @@ import { CATEGORIES } from '../config/categories'
 const Header = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light py-0">
         <div className="container-fluid" style={{ backgroundColor: '#26ae61' }}>
           <Link className="navbar-brand" to="/">
             <img src={logolight} className="logo logo-display" alt="" />

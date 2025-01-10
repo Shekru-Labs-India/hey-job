@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 const Footer = () => {
+  const navigate = useNavigate();
+  const handlePrivacyPolicyClick = () => {
+    navigate('/privacy-policy');
+  };
   return (
     <>
       <footer className="footer">
@@ -48,22 +52,30 @@ const Footer = () => {
                   <ul>
                     <li>
                       <Link to="/">
+                      <p>
                         <i className="fa fa-angle-double-right" /> Home
+                      </p>
                       </Link>
                     </li>
                     <li>
                       <Link to="/browse-jobs">
+                      <p>
                         <i className="fa fa-angle-double-right" /> Jobs Listing
+                      </p>
                       </Link>
                     </li>
                     <li>
                       <Link to="/privacy-policy">
+                      <p>
                         <i className="fa fa-angle-double-right" /> Privacy Policy
+                      </p>
                       </Link>
                     </li>
                     <li>
                       <Link to="#">
+                      <p>
                         <i className="fa fa-angle-double-right" /> Term &amp; Condition
+                      </p>
                       </Link>
                     </li>
                   </ul>
@@ -71,6 +83,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className="row">
             <div className="col-md-12">
               <div className="copyright text-center">
