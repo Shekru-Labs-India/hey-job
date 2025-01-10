@@ -6,6 +6,7 @@ import { db } from '../config/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { CATEGORIES } from '../config/categories'
 import company1 from '../assets/img/company_logo_1.png'
+import JobMeta from './JobMeta'
 
 const JobDetail = () => {
   const { id, title } = useParams();
@@ -47,6 +48,7 @@ const JobDetail = () => {
 
   return (
     <>
+      <JobMeta job={job} />
       <Header />
       <div className="page-title">
         <div className="container">

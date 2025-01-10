@@ -11,12 +11,13 @@ import Form from './components/Form';
 import Categories from './components/Categories';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsConditions from './components/TermsConditions';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter basename="/heyjob_website">
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/job-detail/:title/:id" element={<JobDetail/>} />
@@ -27,7 +28,7 @@ function App() {
           <Route path="/terms-conditions" element={<TermsConditions/>} />
         </Routes>
       </BrowserRouter>
-    </>
+    </HelmetProvider>
   );
 }
 
