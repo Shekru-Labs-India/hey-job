@@ -224,11 +224,11 @@ const BrowseJobs = () => {
             </h2>
             <p>
               <a href="/">Home</a> 
-              <i className="ti-angle-double-right"></i> 
+              <i className="fa fa-angle-double-right"></i> 
               {category ? (
                 <>
                   <a href="/browse-jobs">Browse Jobs</a>
-                  <i className="ti-angle-double-right"></i>
+                  <i className="fa fa-angle-double-right"></i>
                   {CATEGORIES.find(cat => cat.urlSlug === category.toLowerCase())?.displayName || category}
                 </>
               ) : (
@@ -478,64 +478,98 @@ const BrowseJobs = () => {
                     : 'No jobs found matching your criteria'}
                 </div>
               ) : (
-                currentJobs.map((job, index) => (
-                  <div className="job-verticle-list" key={job.id}>
-                    <div className="vertical-job-card">
-                      <div className="vertical-job-header">
-                        <div className="vrt-job-cmp-logo">
-                          <a onClick={() => handleJobClick(job.id, job.jobTitle)}>
-                            <img src={job.image || company1} className="img-responsive" alt={job.companyDetails} />
-                          </a>
+                <div className="row">
+                  {currentJobs.map((job) => (
+                    <div className="col-md-3 col-sm-6" key={job.id}>
+                      <div
+                        className="utf_grid_job_widget_area pt-0"
+                        onClick={() => handleJobClick(job.id, job.jobTitle)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        <div className="u-content px-0" style={{ position: "relative" }}>
+                          <div className="avatar-square box-80" style={{ width: "100%", position: "relative" }}>
+                            <a onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id, job.jobTitle);
+                            }}>
+                              <div 
+                                className="category-icon-fallback"
+                                style={{
+                                  display: 'flex',
+                                  width: "100%",
+                                  height: "200px",
+                                  backgroundColor: "#f8f9fa",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  fontSize: "4rem",
+                                  color: "#26ae61",
+                                  borderRadius: "8px",
+                                  padding: "2rem",
+                                  position: "relative",
+                                  zIndex: 1
+                                }}
+                              >
+                                <i className="fa-solid fa-house" style={{ fontSize: "3.5rem" }}></i>
+                              </div>
+                             
+                              <img
+                                className="img-responsive"
+                                src={job.image}
+                                alt={job.companyDetails}
+                                onError={(e) => {
+                                  e.target.style.display = 'none';
+                                }}
+                                style={{
+                                  width: "100%",
+                                  height: "200px",
+                                  objectFit: "cover",
+                                  position: "absolute",
+                                  top: 0,
+                                  left: 0,
+                                  borderRadius: "8px",
+                                  zIndex: 2
+                                }}
+                              />
+                            </a>
+                          </div>
+                          <div style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 3 }}>
+                            <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
+                              {CATEGORIES.find(cat => cat.value === job.category)?.displayName || job.category}
+                            </span>
+                          </div>
+                          <h5 className="pt-3">
+                            <a onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id, job.jobTitle);
+                            }}>
+                              {job.jobTitle}
+                            </a>
+                          </h5>
+                          <p className="text-muted mb-0">
+                            <i className="fa fa-briefcase"></i> {job.jobPosition}
+                          </p>
+                          <p className="text-muted py-0 my-0">
+                            <i className="fas fa-wallet"></i> {job.package}+ LPA
+                          </p>
                         </div>
-                        <h4>
-                          <a onClick={() => handleJobClick(job.id, job.jobTitle)} style={{ cursor: 'pointer' }}>
-                            {job.companyDetails}
+                        <div className="utf_apply_job_btn_item">
+                          <a
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleJobClick(job.id, job.jobTitle);
+                            }}
+                            className="btn job-browse-btn btn-radius br-light"
+                          >
+                            Apply
                           </a>
-                        </h4>
-                        <span className="com-tagline">{job.jobTitle}</span>
-                        <span className="pull-right vacancy-no">
-                          No. <span className="v-count">{indexOfFirstJob + index + 1}</span>
-                        </span>
-                      </div>
-                      <div className="vertical-job-body">
-                        <div className="row">
-                          <div className="col-md-9 col-sm-12 col-xs-12">
-                            <ul className="can-skils">
-                              <li><strong>Job Id: </strong>{job.id}</li>
-                              <li><strong>Job Type: </strong>{job.jobType}</li>
-                              <li>
-                                <strong>Skills: </strong>
-                                <div>
-                                  {job.skills?.map((skill, idx) => (
-                                    <span key={idx} className="skill-tag">{skill}</span>
-                                  ))}
-                                </div>
-                              </li>
-                              <li><strong>Experience: </strong>{job.experience || 'Not Specified'}</li>
-                              <li><strong>Location: </strong>{job.location}</li>
-                            </ul>
-                          </div>
-                          <div className="col-md-3 col-sm-12 col-xs-12">
-                            <div className="vrt-job-act">
-                              <button 
-                                onClick={() => handleJobClick(job.id, job.jobTitle)}
-                                className="btn-job theme-btn job-apply"
-                              >
-                                Apply Now
-                              </button>
-                              <button 
-                                onClick={() => handleJobClick(job.id, job.jobTitle)}
-                                className="btn-job light-gray-btn"
-                              >
-                                View Job
-                              </button>
-                            </div>
-                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))
+                  ))}
+                </div>
               )}
 
               {/* Pagination */}

@@ -85,7 +85,11 @@ const Home = () => {
             </li>
           </ul> */}
           <div className="tab-content">
-            <div className="tab-pane fade in show active" id="recent" role="tabpanel">
+            <div
+              className="tab-pane fade in show active"
+              id="recent"
+              role="tabpanel"
+            >
               <div className="row">
                 {loading ? (
                   <div className="col-12 text-center">Loading jobs...</div>
@@ -99,17 +103,25 @@ const Home = () => {
                         onClick={() => handleJobClick(job.id, job.jobTitle)}
                         style={{ cursor: "pointer" }}
                       >
-                        <div className="u-content px-0" style={{ position: "relative" }}>
-                          <div className="avatar-square box-80" style={{ width: "100%" }}>
-                            <a onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleJobClick(job.id, job.jobTitle);
-                            }}>
-                              <div 
+                        <div
+                          className="u-content px-0"
+                          style={{ position: "relative" }}
+                        >
+                          <div
+                            className="avatar-square box-80"
+                            style={{ width: "100%" }}
+                          >
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleJobClick(job.id, job.jobTitle);
+                              }}
+                            >
+                              <div
                                 className="category-icon-fallback"
                                 style={{
-                                  display: 'flex',
+                                  display: "flex",
                                   width: "100%",
                                   height: "200px",
                                   backgroundColor: "#f8f9fa",
@@ -120,47 +132,64 @@ const Home = () => {
                                   borderRadius: "8px",
                                   padding: "2rem",
                                   position: "relative",
-                                  zIndex: 1
+                                  zIndex: 1,
                                 }}
                               >
-                                <i className="fa-solid fa-house" style={{ fontSize: "3.5rem" }}></i>
+                                <i
+                                  className="fa-solid fa-house"
+                                  style={{ fontSize: "3.5rem" }}
+                                ></i>
                               </div>
-                             
-                                <img
-                                  className="img-responsive"
-                                  src={job.image}
-                                  alt={job.companyDetails}
-                                  onError={(e) => {
-                                    e.target.style.display = 'none';
-                                  }}
-                                  style={{
-                                    width: "100%",
-                                    height: "200px",
-                                    objectFit: "cover",
-                                    position: "absolute",
-                                    top: 0,
-                                    left: 0,
-                                    borderRadius: "8px",
-                                    zIndex: 2
-                                  }}
-                                />
-                             
+
+                              <img
+                                className="img-responsive"
+                                src={job.image}
+                                alt={job.companyDetails}
+                                onError={(e) => {
+                                  e.target.style.display = "none";
+                                }}
+                                style={{
+                                  width: "100%",
+                                  height: "200px",
+                                  objectFit: "cover",
+                                  position: "absolute",
+                                  top: 0,
+                                  left: 0,
+                                  borderRadius: "8px",
+                                  zIndex: 2,
+                                }}
+                              />
                             </a>
                           </div>
-                          <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
-                            {CATEGORIES.find(cat => cat.value === job.category)?.displayName || job.category}
-                          </span>
-                          <h5 className="pt-3">
-                            <a onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-                              handleJobClick(job.id, job.jobTitle);
-                            }}>
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              zIndex: 3,
+                            }}
+                          >
+                            <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
+                              {CATEGORIES.find(
+                                (cat) => cat.value === job.category
+                              )?.displayName || job.category}
+                            </span>
+                          </div>
+                          <h5 className="pt-3 px-3 ">
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                handleJobClick(job.id, job.jobTitle);
+                              }}
+                            >
                               {job.jobTitle}
                             </a>
                           </h5>
                           <p className="text-muted mb-0">
-                            <i className="fa fa-briefcase"></i> {job.jobPosition}
+                            <i className="fa fa-briefcase"></i>{" "}
+                            {job.jobPosition}
                           </p>
                           <p className="text-muted py-0 my-0">
                             <i className="fas fa-wallet"></i> {job.package}+ LPA
@@ -195,7 +224,8 @@ const Home = () => {
               <div className="heading">
                 <h2>Job Categories</h2>
                 <p>
-                  Browse jobs by category and find the perfect position for your next career move
+                  Browse jobs by category and find the perfect position for your
+                  next career move
                 </p>
               </div>
             </div>
@@ -208,10 +238,10 @@ const Home = () => {
             ) : (
               categories.map((category, index) => (
                 <div key={index} className="col-12 col-sm-6 col-md-3 mb-4">
-                  <div 
-                    className="utf_category_box_area" 
+                  <div
+                    className="utf_category_box_area"
                     onClick={() => handleCategoryClick(category.urlSlug)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ cursor: "pointer" }}
                   >
                     <div className="utf_category_desc">
                       <div className="utf_category_icon">
@@ -222,7 +252,9 @@ const Home = () => {
                       </div>
                       <div className="category-detail utf_category_desc_text">
                         <h4>{category.displayName}</h4>
-                        <p>{category.jobs} {category.jobs === 1 ? 'Job' : 'Jobs'}</p>
+                        <p>
+                          {category.jobs} {category.jobs === 1 ? "Job" : "Jobs"}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -231,8 +263,8 @@ const Home = () => {
             )}
             {categories.length > 0 && (
               <div className="col-12 text-center mt-3">
-                <button 
-                  onClick={() => navigate('/categories')} 
+                <button
+                  onClick={() => navigate("/categories")}
                   className="btn theme-btn btn-m"
                 >
                   View All Categories

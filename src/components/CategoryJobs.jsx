@@ -4,6 +4,7 @@ import { db } from '../config/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Header from './Header';
 import Footer from './Footer';
+import { CATEGORIES } from '../config/categories';
 import company1 from '../assets/img/company_logo_1.png';
 
 const CategoryJobs = () => {
@@ -57,7 +58,7 @@ const CategoryJobs = () => {
               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
               .join(' ')} Jobs</h2>
             <p>
-              <a href="/">Home</a> <i className="ti-angle-double-right" /> {category.replace(/-/g, ' ')}
+              <a href="/">Home</a> <i className="fa fa-angle-double-right"></i> {category.replace(/-/g, ' ')}
             </p>
           </div>
         </div>
@@ -78,36 +79,58 @@ const CategoryJobs = () => {
                     onClick={() => handleJobClick(job.id, job.jobTitle)}
                     style={{ cursor: "pointer" }}
                   >
-                    <div
-                      className="u-content px-0"
-                      style={{ position: "relative" }}
-                    >
-                      <div
-                        className={
-                          job.image ? "avatar-square box-80" : "avatar box-80"
-                        }
-                        style={{ width: "100%" }}
-                      >
+                    <div className="u-content px-0" style={{ position: "relative" }}>
+                      <div className="avatar-square box-80" style={{ width: "100%", position: "relative" }}>
                         <a onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
                           handleJobClick(job.id, job.jobTitle);
                         }}>
+                          <div 
+                            className="category-icon-fallback"
+                            style={{
+                              display: 'flex',
+                              width: "100%",
+                              height: "200px",
+                              backgroundColor: "#f8f9fa",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              fontSize: "4rem",
+                              color: "#26ae61",
+                              borderRadius: "8px",
+                              padding: "2rem",
+                              position: "relative",
+                              zIndex: 1
+                            }}
+                          >
+                            <i className="fa-solid fa-house" style={{ fontSize: "3.5rem" }}></i>
+                          </div>
+                         
                           <img
                             className="img-responsive"
-                            src={job.image ? job.image : company1}
+                            src={job.image}
                             alt={job.companyDetails}
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
                             style={{
                               width: "100%",
                               height: "200px",
                               objectFit: "cover",
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              borderRadius: "8px",
+                              zIndex: 2
                             }}
                           />
                         </a>
                       </div>
-                      <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
-                        {job.category}
-                      </span>
+                      <div style={{ position: "absolute", top: 0, left: 0, right: 0, zIndex: 3 }}>
+                        <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
+                          {CATEGORIES.find(cat => cat.value === job.category)?.displayName || job.category}
+                        </span>
+                      </div>
                       <h5 className="pt-3">
                         <a onClick={(e) => {
                           e.preventDefault();
