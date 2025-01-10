@@ -27,7 +27,7 @@ const JobMeta = ({ job }) => {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '');
-    return `https://shekru-labs-india.github.io/heyjob_website/job-detail/${formattedTitle}/${job.id}`;
+    return `https://shekru-labs-india.github.io/heyjob_website/#/job-detail/${formattedTitle}/${job.id}`;
   };
 
   // Default company logo

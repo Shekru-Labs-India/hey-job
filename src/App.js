@@ -2,7 +2,7 @@ import './assets/css/style.css';
 import './assets/css/responsive.css';
 import './assets/css/bootsnav.css'
 import Home from "./components/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import JobDetail from './components/JobDetail';
 import CategoryJobs from './components/CategoryJobs';
 import BrowseCategory from './components/BrowseCategory';
@@ -17,7 +17,7 @@ import { HelmetProvider } from 'react-helmet-async';
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter basename="/heyjob_website">
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/job-detail/:title/:id" element={<JobDetail/>} />
@@ -27,7 +27,7 @@ function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
           <Route path="/terms-conditions" element={<TermsConditions/>} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </HelmetProvider>
   );
 }

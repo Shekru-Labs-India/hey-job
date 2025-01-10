@@ -19,13 +19,7 @@ const JobDetail = () => {
         const jobDoc = await getDoc(doc(db, "jobs", id));
         if (jobDoc.exists()) {
           const jobData = { id: jobDoc.id, ...jobDoc.data() };
-          // Verify if the URL matches the job title
-          const formattedJobTitle = jobData.jobTitle.toLowerCase().replace(/\s+/g, '+');
-          if (formattedJobTitle !== title) {
-            // If URL doesn't match the job title, redirect to the correct URL
-            window.location.href = `/job-detail/${formattedJobTitle}/${id}`;
-            return;
-          }
+          console.log('Job data loaded:', jobData);
           setJob(jobData);
         }
         setLoading(false);
@@ -48,6 +42,7 @@ const JobDetail = () => {
 
   return (
     <>
+      {job && console.log('Rendering JobMeta with:', job)}
       <JobMeta job={job} />
       <Header />
       <div className="page-title">
