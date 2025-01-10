@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/heyjob_website/static/css/main.7376678e.css",
+    "main.js": "/heyjob_website/static/js/main.bfe64cd0.js",
+    "static/js/488.97959ffc.chunk.js": "/heyjob_website/static/js/488.97959ffc.chunk.js",
+    "static/media/single_page_header.png": "/heyjob_website/static/media/single_page_header.800d84eb4047eb2500ad.png",
+    "static/media/slider_bg.jpg": "/heyjob_website/static/media/slider_bg.e0a104c6868ab60222da.jpg",
+    "static/media/page-loading.gif": "/heyjob_website/static/media/page-loading.feeef7ad65acc3da46e0.gif",
+    "static/media/city_bg.png": "/heyjob_website/static/media/city_bg.0f943da8687cf31db88e.png",
+    "static/media/company_logo_1.png": "/heyjob_website/static/media/company_logo_1.c269646aa72925e5fced.png",
+    "index.html": "/heyjob_website/index.html",
+    "main.7376678e.css.map": "/heyjob_website/static/css/main.7376678e.css.map",
+    "main.bfe64cd0.js.map": "/heyjob_website/static/js/main.bfe64cd0.js.map",
+    "488.97959ffc.chunk.js.map": "/heyjob_website/static/js/488.97959ffc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7376678e.css",
+    "static/js/main.bfe64cd0.js"
+  ]
+}
