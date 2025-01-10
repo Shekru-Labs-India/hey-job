@@ -100,7 +100,7 @@ const Home = () => {
                         style={{ cursor: "pointer" }}
                       >
                         <div className="u-content px-0" style={{ position: "relative" }}>
-                          <div className={job.image ? "avatar-square box-80" : "avatar box-80"} style={{ width: "100%" }}>
+                          <div className="avatar-square box-80" style={{ width: "100%" }}>
                             <a onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
@@ -125,7 +125,7 @@ const Home = () => {
                               >
                                 <i className="fa-solid fa-house" style={{ fontSize: "3.5rem" }}></i>
                               </div>
-                              {job.image && !job.image.startsWith('file:///') && (
+                             
                                 <img
                                   className="img-responsive"
                                   src={job.image}
@@ -144,7 +144,7 @@ const Home = () => {
                                     zIndex: 2
                                   }}
                                 />
-                              )}
+                             
                             </a>
                           </div>
                           <span className="job-type bg-success border-1 text-white position-absolute top-2 start-2">
