@@ -3,7 +3,7 @@ export const CATEGORIES = [
   { 
     title: 'WFH', 
     icon: 'fa-house', 
-    urlSlug: 'wfh', 
+    urlSlug: 'WFH', 
     displayName: 'WFH',
     value: 'WFH'  // Value stored in database
   },
