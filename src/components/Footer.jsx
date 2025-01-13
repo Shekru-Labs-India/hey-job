@@ -16,12 +16,11 @@ const Footer = () => {
                 <img className="footer-logo" src="assets/img/logo.png" alt="" />
               </Link>
               <p>
-                Lorem Ipsum is simply dummy text of printing and type setting
-                industry. Lorem Ipsum been industry standard dummy text ever
-                since.
+                HeyJob is a leading job search platform that connects job seekers with employers. 
+                Our mission is to help people find meaningful employment and help companies find the best talent.
               </p>
               {/* Social Box */}
-              <div className="f-social-box">
+              {/* <div className="f-social-box">
                 <ul>
                   <li>
                     <a href="#">
@@ -44,7 +43,7 @@ const Footer = () => {
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
             <div className="col-md-9 col-sm-8">
               <div className="row">

@@ -577,35 +577,42 @@ const BrowseJobs = () => {
                 <div className="utf_flexbox_area padd-0">
                   <ul className="pagination">
                     <li className="page-item">
-                      <button
+                      <a
                         className="page-link"
+                        href="#"
+                        aria-label="Previous"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                       >
                         <span aria-hidden="true">«</span>
-                      </button>
+                        <span className="sr-only">Previous</span>
+                      </a>
                     </li>
                     {[...Array(totalPages)].map((_, i) => (
                       <li 
                         key={i} 
                         className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}
                       >
-                        <button
+                        <a
                           className="page-link"
+                          href="#"
                           onClick={() => setCurrentPage(i + 1)}
                         >
                           {i + 1}
-                        </button>
+                        </a>
                       </li>
                     ))}
                     <li className="page-item">
-                      <button
+                      <a
                         className="page-link"
+                        href="#"
+                        aria-label="Next"
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages}
                       >
                         <span aria-hidden="true">»</span>
-                      </button>
+                        <span className="sr-only">Next</span>
+                      </a>
                     </li>
                   </ul>
                 </div>
