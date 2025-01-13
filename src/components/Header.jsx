@@ -1,5 +1,6 @@
 import React from 'react'
 import logolight from '../assets/img/logo-light.png'
+import logo from '../assets/img/logo/logo_low.png'
 import { Link } from 'react-router-dom'
 import { CATEGORIES } from '../config/categories'
 
@@ -7,9 +8,9 @@ const Header = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light py-0">
-        <div className="container-fluid" style={{ backgroundColor: '#26ae61' }}>
+        <div className="container-fluid" style={{ backgroundColor: "#26ae61" }}>
           <Link className="navbar-brand" to="/">
-            <img src={logolight} className="logo logo-display" alt="" />
+            <img src={logo} className="logo logo-display" alt="" />
           </Link>
 
           <button
@@ -34,7 +35,10 @@ const Header = () => {
               </li>
               {CATEGORIES.map((category, index) => (
                 <li key={index} className="nav-item me-3">
-                  <Link className="nav-link text-white" to={`/category/${category.urlSlug}`}>
+                  <Link
+                    className="nav-link text-white"
+                    to={`/category/${category.urlSlug}`}
+                  >
                     <i className={`fa-solid ${category.icon} me-1`}></i>
                     {category.displayName}
                   </Link>
@@ -45,7 +49,7 @@ const Header = () => {
         </div>
       </nav>
     </>
-  )
+  );
 }
 
 export default Header
