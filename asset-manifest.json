@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/heyjob_website/static/css/main.7376678e.css",
-    "main.js": "/heyjob_website/static/js/main.e3c26853.js",
+    "main.css": "/heyjob_website/static/css/main.4eac83a8.css",
+    "main.js": "/heyjob_website/static/js/main.fdd254ba.js",
     "static/js/488.97959ffc.chunk.js": "/heyjob_website/static/js/488.97959ffc.chunk.js",
     "static/media/single_page_header.png": "/heyjob_website/static/media/single_page_header.800d84eb4047eb2500ad.png",
     "static/media/slider_bg.jpg": "/heyjob_website/static/media/slider_bg.e0a104c6868ab60222da.jpg",
     "static/media/page-loading.gif": "/heyjob_website/static/media/page-loading.feeef7ad65acc3da46e0.gif",
     "static/media/city_bg.png": "/heyjob_website/static/media/city_bg.0f943da8687cf31db88e.png",
     "static/media/company_logo_1.png": "/heyjob_website/static/media/company_logo_1.c269646aa72925e5fced.png",
+    "static/media/logo_low.png": "/heyjob_website/static/media/logo_low.e0ea5c1f6edc4a4cd1b1.png",
     "index.html": "/heyjob_website/index.html",
-    "main.7376678e.css.map": "/heyjob_website/static/css/main.7376678e.css.map",
-    "main.e3c26853.js.map": "/heyjob_website/static/js/main.e3c26853.js.map",
+    "main.4eac83a8.css.map": "/heyjob_website/static/css/main.4eac83a8.css.map",
+    "main.fdd254ba.js.map": "/heyjob_website/static/js/main.fdd254ba.js.map",
     "488.97959ffc.chunk.js.map": "/heyjob_website/static/js/488.97959ffc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7376678e.css",
-    "static/js/main.e3c26853.js"
+    "static/css/main.4eac83a8.css",
+    "static/js/main.fdd254ba.js"
   ]
 }
